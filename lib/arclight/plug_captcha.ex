@@ -6,24 +6,33 @@ defmodule Arclight.PlugCaptcha do
   use Plug.Builder
 
   alias Uptight.Result
+  alias Uptight.Result.{Ok, Err}
 
-  plug(Arclight.PlugJsonBody)
   plug(:captcha)
 
   @spec captcha(Plug.Conn.t(), keyword()) :: Plug.Conn.t()
   def captcha(conn, _opts) do
-    case Recaptcha.verify(conn.assigns[:json_body]["captchaToken"]) do
-      {:ok, %{challenge_ts: ts, hostname: host}} ->
-        # TODO: check for hostname green-list, per configuration
-        Plug.Conn.assign(
-          conn,
-          :captcha,
-          Result.new(fn -> %{challenge_ts: ts, hostname: host} end)
-        )
+    case Result.new(fn ->
+           %{"Recaptcha is NOT configured" => false} = %{
+             "Recaptcha is NOT configured" =>
+               Application.get_env(:doma_recaptcha, :secret) |> is_nil
+           }
 
-      {:error, error} ->
-        send_resp(conn, 403, error |> Jason.encode!())
-        |> halt()
+           %{
+             "User submitted valid recaptcha" =>
+               {:ok, res = %{challenge_ts: _ts, hostname: _host}}
+           } = %{
+             "User submitted valid recaptcha" =>
+               Recaptcha.verify(conn.body_params["captchaToken"])
+           }
+
+           res
+         end) do
+      x = %Ok{} ->
+        Plug.Conn.assign(conn, :captcha, x)
+
+      e = %Err{} ->
+        send_resp(conn, 403, e |> Jason.encode!()) |> halt()
     end
   end
 end
