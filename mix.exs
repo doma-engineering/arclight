@@ -4,7 +4,7 @@ defmodule Arclight.MixProject do
   def project do
     [
       app: :arclight,
-      version: "0.2.1-pre",
+      version: "0.2.2-pre",
       elixir: "~> 1.12",
       start_permanent: Mix.env() == :prod,
       description: "Minimalist Phoenix replacement for distributed (not server-centric) web.",
@@ -36,7 +36,7 @@ defmodule Arclight.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:dyn_hacks, "~> 0.1.0"},
       {:uptight, "~> 0.1.0-pre"},
-      {:do_auth, "~> 0.5.0-pre"},
+      {:do_auth, "~> 0.5.1-pre"},
       {:doma_recaptcha, "~> 3.1.1-doma"},
       {:enacl, "~> 1.2"}
     ]
