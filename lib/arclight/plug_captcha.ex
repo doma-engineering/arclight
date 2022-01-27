@@ -7,7 +7,7 @@ defmodule Arclight.PlugCaptcha do
 
   alias Uptight.Result
 
-  plug(Web.ExtractJsonBody)
+  plug(Arclight.PlugJsonBody)
   plug(:captcha)
 
   @spec captcha(Plug.Conn.t(), keyword()) :: Plug.Conn.t()

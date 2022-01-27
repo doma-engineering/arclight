@@ -13,7 +13,7 @@ defmodule Arclight.Login do
 
   import DynHacks, only: [r_m: 2]
 
-  plug(Web.ExtractJsonBody)
+  plug(Arclight.PlugJsonBody)
   plug(:login)
 
   @spec login(Plug.Conn.t(), keyword()) :: Plug.Conn.t()

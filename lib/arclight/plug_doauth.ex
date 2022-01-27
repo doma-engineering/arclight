@@ -11,7 +11,7 @@ defmodule DoAuth.Plug do
   import DoAuth.Crypto, only: [verify_map: 1, urlsafe_server_pk: 0]
   import Result, only: [cont: 2, cont_end: 1]
 
-  plug(Web.ExtractJsonBody)
+  plug(Arclight.PlugJsonBody)
   plug(:auth)
 
   @spec auth(Plug.Conn.t(), keyword) :: Plug.Conn.t()

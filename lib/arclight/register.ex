@@ -14,7 +14,7 @@ defmodule Arclight.Register do
   @spec register(Plug.Conn.t(), keyword()) :: Plug.Conn.t()
   def register(conn, _opts) do
     case Result.new(fn ->
-           %{"Captcha is ok" => true} = %{"Captcha is ok" => conn.assigns[:captcha]} |> is_ok?()
+           %{"Captcha is ok" => true} = %{"Captcha is ok" => conn.assigns[:captcha] |> is_ok?()}
 
            %{"`me` field is present in credentialSubject" => false} = %{
              "`me` field is present in credentialSubject" =>
