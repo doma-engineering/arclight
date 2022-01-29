@@ -1,6 +1,6 @@
 defmodule Arclight.RouterAuthDemo do
   @moduledoc """
-  An example router, demonstrating the power of DoAuth subsystem.
+  An simple login / register router, demonstrating the power of DoAuth subsystem.
   """
   use Plug.Router
 

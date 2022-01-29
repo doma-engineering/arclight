@@ -11,6 +11,13 @@ defmodule Arclight.Register do
 
   plug(:register)
 
+  @doc """
+  This function will be changed significantly due to:
+
+  * https://github.com/doma-engineering/megalith/issues/39
+  * https://github.com/doma-engineering/megalith/issues/41
+  * https://github.com/doma-engineering/megalith/issues/40
+  """
   @spec register(Plug.Conn.t(), keyword()) :: Plug.Conn.t()
   def register(conn, _opts) do
     case Result.new(fn ->

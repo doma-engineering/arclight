@@ -15,4 +15,12 @@ defmodule Arclight.RouterPublic do
   get "/tofu" do
     Plug.run(conn, [&Arclight.Tofu.whoami/1])
   end
+
+  post "/register" do
+    Plug.run(conn, [{Arclight.PlugCaptcha, []}, {Arclight.Register, []}])
+  end
+
+  post "/login" do
+    Plug.run(conn, [{Arclight.Login, []}])
+  end
 end
