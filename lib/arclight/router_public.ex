@@ -6,6 +6,7 @@ defmodule Arclight.RouterPublic do
   use Plug.Router
 
   plug(:match)
+  plug(Plug.Parsers, parsers: [:urlencoded, :json], pass: ["*/*"], json_decoder: Jason)
   plug(:dispatch)
 
   # Trust on first use endpoint.
@@ -17,7 +18,11 @@ defmodule Arclight.RouterPublic do
   end
 
   post "/register" do
-    Plug.run(conn, [{Arclight.PlugCaptcha, []}, {Arclight.Register, []}])
+    Plug.run(conn, [
+      {Arclight.PlugCaptcha, []},
+      {Arclight.PlugJsonBody, []},
+      {Arclight.Register, []}
+    ])
   end
 
   post "/login" do
