@@ -15,7 +15,6 @@ defmodule Arclight.PlugReact do
 
   @impl true
   def call(conn, opts) do
-    IO.inspect(opts)
     Plug.Static.call(conn, Plug.Static.init(opts))
   end
 end
