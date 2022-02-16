@@ -4,7 +4,7 @@ defmodule Arclight.MixProject do
   def project do
     [
       app: :arclight,
-      version: "0.2.8-pre",
+      version: "0.3.8-pre",
       elixir: "~> 1.12",
       start_permanent: Mix.env() == :prod,
       description: "Minimalist Phoenix replacement for distributed (not server-centric) web.",
