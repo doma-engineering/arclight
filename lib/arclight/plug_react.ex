@@ -10,7 +10,7 @@ defmodule Arclight.PlugReact do
 
   @impl true
   def init([app: app]) do
-    [from: {app, "priv/react/build/"}, at: "/"]
+    [from: {app, "priv/ui/build/"}, at: "/"]
   end
 
   @impl true
